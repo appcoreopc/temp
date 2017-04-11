@@ -7,7 +7,7 @@ import { NgModule }             from '@angular/core';
 const appRoutes: Routes = [
   { path: 'add', component: AddPersonComponent },
   { path: 'list', component: SearchComponent },
-   { path: '**', component: AddPersonComponent }
+  { path: '**', component: AddPersonComponent }
 ];
 
 @NgModule({
