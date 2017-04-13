@@ -1,8 +1,8 @@
 {
-  "name": "angular-io-example",
+  "name": "ageranger",
   "version": "1.0.0",
   "private": true,
-  "description": "Example project from an angular.io guide.",
+  "description": "age ranger world domination.",
   "scripts": {
     "test:once": "karma start karma.conf.js --single-run",
     "build": "tsc -p src/",
@@ -23,7 +23,7 @@
     "lint": "tslint ./src/**/*.ts -t verbose"
   },
   "keywords": [],
-  "author": "",
+  "author": "xxx",
   "license": "MIT",
   "dependencies": {
     "@angular/common": "~4.0.0",

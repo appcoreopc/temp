@@ -1,7 +1,23 @@
 import { Component } from '@angular/core';
-
+import { PersonService } from '../services/PersonService'
+import { Person } from '../Person'
 @Component({
   selector: 'my-app',
-  template: `<h1>add person {{name}}</h1>`
+  templateUrl: './AddPersonComponent.html'
 })
-export class AddPersonComponent { name = 'Angular'; }
+
+export class AddPersonComponent {
+  name = 'Angular';
+
+  constructor(private personService: PersonService) {
+  }
+
+
+  addPerson(): void {
+    console.log('test');
+    var p: Person = {
+      firstName: '', lastName: "", age: 12
+    }
+    this.personService.addPerson(p);
+  }
+}
