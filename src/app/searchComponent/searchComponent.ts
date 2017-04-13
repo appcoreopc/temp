@@ -1,7 +1,17 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>search component {{name}}</h1>`
+  templateUrl: `./searchComponent.html`
 })
-export class SearchComponent { name = 'Angular'; }
+export class SearchComponent { 
+
+  name = 'Angular'; 
+  firstname = new FormControl();
+  lastname = new FormControl();
+
+  constructor() {
+    //this.firstname.valueChanges
+  }
+}
