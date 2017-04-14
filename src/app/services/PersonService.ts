@@ -22,19 +22,8 @@ export class PersonService {
 
     }
 
-    listPerson(person: Person) {
-        return new Promise(resolve => {
-            this._http.get(this._urlPersonList).map(data => data.json()).subscribe(x => {
-                this._dataList = x.data;
-                resolve(this._dataList);
-            },
-                (err) => {
-                    console.log(err);
-                },
-                () => {
-                    console.log('completed');
-                });
-        });
+    listPerson(): Observable<any> {
+        return this._http.get(this._urlPersonList).map(data => data.json());
     }
 
     search(firstname: string, lastname: string, age: string) {
@@ -46,4 +35,8 @@ export class PersonService {
                 });
         });
     }
+
+    static asPerson(json: any) {
+    }
+
 }

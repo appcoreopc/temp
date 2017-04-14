@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Fri Apr 14 2017 14:23:46 GMT+1200 (New Zealand Standard Time)
+// I am using tsc to tanspile to js and there will not be any transpile configuration here.
 
 module.exports = function(config) {
   config.set({
@@ -54,7 +55,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
