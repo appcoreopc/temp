@@ -1,12 +1,12 @@
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './searchComponent/searchComponent';
 import { AddPersonComponent } from './addPersonComponent/addPersonComponent';
 import { ListComponent } from './listComponent/listComponent';
 import { NgModule } from '@angular/core';
-import { PersonService } from './services/PersonService'
+import { PersonService } from './services/PersonService';
 
 const appRoutes: Routes = [
   { path: 'add', component: AddPersonComponent },

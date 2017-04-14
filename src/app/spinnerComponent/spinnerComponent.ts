@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SpinnerService } from './spinnerService';
 
 @Component({
-  selector: 'my-app',
+  selector: 'my-spinner',
   templateUrl: './spinnerComponent.html'
 })
 
