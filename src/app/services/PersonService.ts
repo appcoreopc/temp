@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Person } from '../Person';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+//import 'rxjs';
 
 @Injectable()
 export class PersonService {
@@ -15,6 +16,8 @@ export class PersonService {
     private _urlPersonList: string = this._localhost + "/api/person/list";
     private _urlPersonSearch: string = this._localhost + "/api/person/list";
 
+    isLoading: boolean = false;
+
     constructor(private http: Http) {
     }
 
@@ -23,7 +26,16 @@ export class PersonService {
     }
 
     listPerson(): Observable<any> {
-        return this._http.get(this._urlPersonList).map(data => data.json());
+        return null;
+        //return this._http.get(this._urlPersonList).map(data => data.json());
+        //     return Observable.from([
+        //         {
+        //             firstname: 'jeremy',
+        //             lastname: 'woo',
+        //             age: 12,
+        //             ageGroup: 'vampire'
+        //         }
+        //    ])
     }
 
     search(firstname: string, lastname: string, age: string) {
