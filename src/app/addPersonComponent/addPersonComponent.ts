@@ -7,11 +7,13 @@ import { Person } from '../Person'
 })
 
 export class AddPersonComponent {
-  name = 'Angular';
+
+  person : Person = new Person(); 
 
   constructor(private personService: PersonService) {
-  }
 
+     
+  }
 
   addPerson(): void {
     console.log('test');
@@ -20,4 +22,9 @@ export class AddPersonComponent {
     }
     this.personService.addPerson(p);
   }
+
+  onSubmit(person: Person): void {
+    console.log('test submit add person');
+  }
 }
+

@@ -2,13 +2,11 @@ import { PersonService } from './PersonService';
 import { getTestBed, TestBed, async, inject } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import {
-
     HttpModule, BaseRequestOptions,
     Http,
     Response,
     ResponseOptions,
     XHRBackend,
-
 } from '@angular/http';
 
 describe("PersonService test ", () => {
