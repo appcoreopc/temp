@@ -34,13 +34,13 @@ describe('AddPersonComponent (templateUrl)', () => {
     comp = fixture.componentInstance; // BannerComponent test instance
 
     // query for the title <h1> by CSS element selector
-    //de = fixture.debugElement.query(By.css('h1'));
-    //el = de.nativeElement;
+    de = fixture.debugElement.query(By.css("#submit"));
+    el = de.nativeElement;
   });
 
-  it('no title in the DOM until manually call `detectChanges`', () => {
+  it('submit button is rendered', () => {
     fixture.detectChanges();
-    //expect('').toEqual('');
+    expect(de.attributes["type"]).toContain('submit');
   });
 
 });

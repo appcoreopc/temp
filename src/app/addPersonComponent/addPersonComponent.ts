@@ -8,21 +8,21 @@ import { Person } from '../Person'
 
 export class AddPersonComponent {
 
-  person : Person = new Person(); 
+  person: Person = new Person();
 
-  // constructor(private personService: PersonService) {
-  // }
+  constructor(private personService: PersonService) {
+  }
 
   addPerson(): void {
-    // console.log('test');
-    // var p: Person = {
-    //   firstName: '', lastName: "", age: 12
-    // }
-    // this.personService.addPerson(p);
+    console.log('test');
+    var p: Person = {
+      firstName: '', lastName: "", age: 12
+    }
+    this.personService.addPerson(p);
   }
 
   onSubmit(person: Person): void {
-    //console.log('test submit add person');
+    console.log('test submit add person');
   }
 }
 
