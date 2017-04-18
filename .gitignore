@@ -4,3 +4,4 @@ node_modules/*
 !karma-test-shim.js 
 src/*.js
 *.map
+!base/*
