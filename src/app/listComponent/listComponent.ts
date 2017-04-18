@@ -19,6 +19,7 @@ export class ListComponent {
     var a = new Person();
     a.firstName = 'mark';
     a.lastName = 'woo';
+
     this.data = [a, a, a];
 
     if (this.service && this.service.listPerson())
