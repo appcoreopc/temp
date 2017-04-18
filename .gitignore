@@ -1,6 +1,6 @@
 node_modules/*
 *.js
 !karma.conf.js
-!karma-test-shim.js
-!src/*.js
+!karma-test-shim.js 
+src/*.js
 *.map
