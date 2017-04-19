@@ -1,29 +1,38 @@
+import { first } from 'rxjs/operator/first';
+import { PersonService } from '../services/PersonService';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'my-app',
   templateUrl: `./searchComponent.html`
 })
-export class SearchComponent {
 
-  name = 'Angular';
+
+export class SearchComponent {
 
   firstname = new FormControl();
   lastname = new FormControl();
 
-  constructor() {
+  constructor(private personService: PersonService) {
+  }
 
-    //search.set('action', 'opensearch');
-    //search.set('search', term);
-    //search.set('format', 'json');
+  ngOnInit() {
 
-    //this.term.valueChanges
-    //           .debounceTime(400)        // wait for 400ms pause in events
-    //            .distinctUntilChanged()   // ignore if next search term is same as previous
-    //           .subscribe(term => this.wikipediaService.search(term).then(items => this.items = items));
+    this.firstname.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .subscribe(term => {
+        console.log(this.firstname.value);
+      });
 
-    //this.firstname.valueChanges
+    this.lastname.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .subscribe(term => {
+        console.log(this.lastname.value);
+      });
 
   }
 }

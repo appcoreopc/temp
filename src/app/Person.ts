@@ -4,4 +4,8 @@ export class Person {
     firstName: string;
     age: number;
     ageGroup: string;
+
+    constructor(name?:Partial<Person>) {
+        Object.assign(this, name);
+    }
 }

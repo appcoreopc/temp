@@ -14,10 +14,12 @@ export class AddPersonComponent {
   }
 
   addPerson(): void {
-    console.log('test');
-    var p: Person = {
-      firstName: '', lastName: "", age: 12
-    }
+    let p = new Person({
+      firstName: '',
+      lastName: "",
+      age: 12
+    });
+
     this.personService.addPerson(p);
   }
 
