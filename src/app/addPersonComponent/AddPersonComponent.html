@@ -1,58 +1,38 @@
-<form #personForm='ngForm' (ngSubmit)="onSubmit()">
+<form [formGroup]='personForm' (ngSubmit)="onSubmit()">
     <div class="container">
 
         <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" id="firstname" class="form-control" required minlength="4" maxlength="24" name="firstname" [(ngModel)]="person.firstName"
-                #name="ngModel">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" formControlName="firstName">
 
-                <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
-                    <div [hidden]="!name.errors.required">
-                        First Name is required
-                    </div>
-                    <div [hidden]="!name.errors.minlength">
-                        First Name must be at least 4 characters long.
-                    </div>
-                    <div [hidden]="!name.errors.maxlength">
-                        First Name cannot be more than 24 characters long.
-                    </div>
-                </div>
+            <div *ngIf="formErrors.firstName" class="alert alert-danger">
+                {{ formErrors.firstName }}
+            </div>
+
         </div>
 
         <div class="form-group">
-            <label for="name">Last Name</label>
-            <input type="text" id="name" class="form-control" required minlength="4" maxlength="24" name="lname" [(ngModel)]="person.lastName"
-                #lname="ngModel">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName">
 
-                <div *ngIf="lname.errors && (lname.dirty || lname.touched)" class="alert alert-danger">
-                    <div [hidden]="!lname.errors.required">
-                        Last Name is required
-                    </div>
-                    <div [hidden]="!lname.errors.minlength">
-                        Last Name must be at least 4 characters long.
-                    </div>
-                    <div [hidden]="!lname.errors.maxlength">
-                        Last Name cannot be more than 24 characters long.
-                    </div>
-                </div>
+            <div *ngIf="formErrors.lastName" class="alert alert-danger">
+                {{ formErrors.lastName }}
+            </div>
+
         </div>
 
         <div class="form-group">
             <label for="name">Age</label>
-            <input type="text" id="name" class="form-control" required maxlength="2" name="age" [(ngModel)]="person.age" #age="ngModel">
+            <input type="text" class="form-control" formControlName="age">
 
-            <div *ngIf="age.errors && (age.dirty || age.touched)" class="alert alert-danger">
-                <div [hidden]="!age.errors.required">
-                    Age is required
-                </div>
-                <div [hidden]="!age.errors.maxlength">
-                    Name cannot be more than 24 characters long.
-                </div>
+            <div *ngIf="formErrors.age" class="alert alert-danger">
+                {{ formErrors.age }}
             </div>
+
         </div>
 
         <div class="form-group">
-            <input [disabled]="!name.valid" class="btn btn-primary" id="submit" name="submit" type="submit" value="Submit">
+            <input [disabled]="!personForm.valid" class="btn btn-primary" id="submit" name="submit" type="submit" value="Submit">
         </div>
     </div>
 
