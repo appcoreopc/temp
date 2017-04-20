@@ -9,7 +9,6 @@ import { Http } from '@angular/http';
   templateUrl: `./searchComponent.html`
 })
 
-
 export class SearchComponent {
 
   firstname = new FormControl();
@@ -33,6 +32,5 @@ export class SearchComponent {
       .subscribe(term => {
         console.log(this.lastname.value);
       });
-
   }
 }

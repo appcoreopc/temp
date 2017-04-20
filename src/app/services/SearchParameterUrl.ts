@@ -1,5 +1,4 @@
-
-class URLSearchParams {
+export class URLSearchParams {
 
     parseUrl: string;
     isQuestionMarkParsed: boolean = false;

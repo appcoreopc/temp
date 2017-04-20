@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Person } from '../Person';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { URLSearchParams } from './SearchParameterUrl';
 //import 'rxjs';
 
 @Injectable()
@@ -17,6 +18,7 @@ export class PersonService {
     private _urlPersonSearch: string = this._localhost + "/api/person/search";
 
     isLoading: boolean = false;
+
     constructor(private http: Http) {
 
     }
@@ -31,7 +33,8 @@ export class PersonService {
 
     search(firstname: string, lastname: string, age: string) {
         var searchUrlParser = new URLSearchParams();
-        var searchUrl = searchUrlParser.getSearchParameter(firstname, lastname);
+        var searchUrl = 
+        searchUrlParser.getSearchParameter(firstname, lastname);
 
         return new Promise(resolve => {
             this._http.get(this._urlPersonSearch + searchUrl).map(x => x.json()).subscribe(y => {
@@ -40,6 +43,6 @@ export class PersonService {
             });
         });
     }
-    static asPerson(json: any) {
-    }
+    
+    
 }

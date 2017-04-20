@@ -1,5 +1,5 @@
 import { PersonService } from '../services/PersonService';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Person } from '../Person'
 
 @Component({
@@ -7,24 +7,25 @@ import { Person } from '../Person'
   templateUrl: './ListComponent.html'
 })
 
-export class ListComponent {
+export class ListComponent implements OnInit {
 
-  name = 'Angular';
-  data: Person[];
+  data: Person[] = [];
 
   constructor(private service: PersonService) {
   }
 
   ngOnInit() {
-    var a = new Person();
-    a.firstName = 'mark';
-    a.lastName = 'woo';
 
-    this.data = [a, a, a];
+    try {
 
-    if (this.service && this.service.listPerson())
-      this.service.listPerson().subscribe(x => {
-        this.data = x;
-     });
+      if (this.service && this.service.listPerson())
+        this.service.listPerson().subscribe(x => {
+          if (x)
+            this.data = x;
+        });
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 }
