@@ -33,19 +33,17 @@ describe('AddPersonComponent (templateUrl)', () => {
   });
 
   it('submit button is rendered', () => {
-    comp = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css("#submit"));
-    el = de.nativeElement;
     fixture.detectChanges();
+    de = fixture.debugElement.query(By.css("#submit"));
     expect(de.attributes["type"]).toContain('submit');
   });
 
   it('rendered controls - firstname, lastname and age', () => {
-    comp = fixture.componentInstance;
+    
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css("#firstname")).attributes["id"]).toContain('firstname');
-
+    
     expect(fixture.debugElement.query(By.css("#lastname")).attributes["id"]).toContain('lastname');
 
     expect(fixture.debugElement.query(By.css("#age")).attributes["id"]).toContain('age');
