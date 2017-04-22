@@ -3,7 +3,7 @@
 
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="text" class="form-control" formControlName="firstName">
+            <input id="firstname" type="text" class="form-control" formControlName="firstName">
 
             <div *ngIf="formErrors.firstName" class="alert alert-danger">
                 {{ formErrors.firstName }}
@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input type="text" class="form-control" formControlName="lastName">
+            <input id="lastname" type="text" class="form-control" formControlName="lastName">
 
             <div *ngIf="formErrors.lastName" class="alert alert-danger">
                 {{ formErrors.lastName }}
@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label for="name">Age</label>
-            <input type="text" class="form-control" formControlName="age">
+            <input id="age" type="text" class="form-control" formControlName="age">
 
             <div *ngIf="formErrors.age" class="alert alert-danger">
                 {{ formErrors.age }}

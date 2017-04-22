@@ -24,23 +24,31 @@ describe('AddPersonComponent (templateUrl)', () => {
       ],
       declarations: [AddPersonComponent], // declare the test component, 
       providers: [PersonService],
-    }).compileComponents();  // compile template and css
+    }).compileComponents();
   }));
 
   // synchronous beforeEach
   beforeEach(() => {
     fixture = TestBed.createComponent(AddPersonComponent);
-
-    comp = fixture.componentInstance; // BannerComponent test instance
-
-    // query for the title <h1> by CSS element selector
-    de = fixture.debugElement.query(By.css("#submit"));
-    el = de.nativeElement;
   });
 
   it('submit button is rendered', () => {
+    comp = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css("#submit"));
+    el = de.nativeElement;
     fixture.detectChanges();
     expect(de.attributes["type"]).toContain('submit');
+  });
+
+  it('rendered controls - firstname, lastname and age', () => {
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css("#firstname")).attributes["id"]).toContain('firstname');
+
+    expect(fixture.debugElement.query(By.css("#lastname")).attributes["id"]).toContain('lastname');
+
+    expect(fixture.debugElement.query(By.css("#age")).attributes["id"]).toContain('age');
   });
 
 });
