@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-describe('AddPersonComponent (templateUrl)', () => {
+describe('ListComponent', () => {
   
   let fixture: ComponentFixture<ListComponent>;
   let de: DebugElement;
@@ -35,9 +35,6 @@ describe('AddPersonComponent (templateUrl)', () => {
     fixture.detectChanges();
     de = fixture.debugElement.query(By.css("h2"));
     el = de.nativeElement;
-
-
-    console.log(el);
     expect(el.innerText).toContain('Person List');
   });
   
