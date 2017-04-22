@@ -20,12 +20,17 @@ export class PersonService {
     isLoading: boolean = false;
 
     constructor(private http: Http) {
-
     }
 
-    addPerson(person: Person): Observable<any> {
-        return this.http.post(this._urlPersonAdd, JSON.stringify(person)).map(x => x.json());
-   };
+    addPerson(person: Person): Promise<boolean> {
+        return new Promise(resolve => {
+            return resolve(false);
+        });
+    };
+
+    addPerson2(person: Person): Observable<any> {
+        return this._http.post(this._urlPersonAdd, JSON.stringify(person)).map(data => data.json());
+    };
 
     listPerson(): Observable<any> {
         return this._http.get(this._urlPersonList).map(data => data.json());
@@ -33,8 +38,8 @@ export class PersonService {
 
     search(firstname: string, lastname: string, age: string) {
         var searchUrlParser = new URLSearchParams();
-        var searchUrl = 
-        searchUrlParser.getSearchParameter(firstname, lastname);
+        var searchUrl =
+            searchUrlParser.getSearchParameter(firstname, lastname);
 
         return new Promise(resolve => {
             this._http.get(this._urlPersonSearch + searchUrl).map(x => x.json()).subscribe(y => {
@@ -43,6 +48,4 @@ export class PersonService {
             });
         });
     }
-    
-    
 }

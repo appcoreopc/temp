@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs/Rx';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../services/PersonService';
 import { Person } from '../Person';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'my-app',
@@ -12,6 +14,7 @@ export class AddPersonComponent implements OnInit {
 
   private person: Person = new Person();
   private personForm: FormGroup;
+  status: boolean;
 
   formErrors = {
     'firstName': '',
@@ -70,9 +73,6 @@ export class AddPersonComponent implements OnInit {
         }
       }
     }
-
-    console.log(this.personForm);
-
   }
 
   addPerson(): void {
@@ -85,8 +85,12 @@ export class AddPersonComponent implements OnInit {
     this.personService.addPerson(p);
   }
 
-  onSubmit(person: Person): void {
-    console.log('test submit add person');
+  onSubmit(person: Person) {
+     return this.personService.addPerson(person).then(statusResult => this.status = statusResult);
+  }
+
+  onSubmit2(person: Person) {
+     return this.personService.addPerson2(person);
   }
 }
 

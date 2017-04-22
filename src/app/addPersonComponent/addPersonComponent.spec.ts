@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ObserveOnMessage } from 'rxjs/operator/observeOn';
+import { async, fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { AddPersonComponent } from './addPersonComponent';
@@ -8,13 +9,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Person } from '../Person';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
 
-describe('AddPersonComponent (templateUrl)', () => {
-
+describe('AddPersonComponent', () => {
   let comp: AddPersonComponent;
   let fixture: ComponentFixture<AddPersonComponent>;
   let de: DebugElement;
   let el: HTMLElement;
+  let personService: PersonService;
+  let spy: jasmine.Spy;
 
   // async beforeEach
   beforeEach(async(() => {
@@ -30,6 +36,12 @@ describe('AddPersonComponent (templateUrl)', () => {
   // synchronous beforeEach
   beforeEach(() => {
     fixture = TestBed.createComponent(AddPersonComponent);
+    personService = fixture.debugElement.injector.get(PersonService);
+    personService = TestBed.get(PersonService);
+    spy = spyOn(personService, 'addPerson').and.returnValue(Promise.resolve(true));
+    spy = spyOn(personService, 'addPerson2').and.returnValue(Observable.of(true));
+
+
   });
 
   it('submit button is rendered', () => {
@@ -39,14 +51,51 @@ describe('AddPersonComponent (templateUrl)', () => {
   });
 
   it('rendered controls - firstname, lastname and age', () => {
-    
+
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css("#firstname")).attributes["id"]).toContain('firstname');
-    
     expect(fixture.debugElement.query(By.css("#lastname")).attributes["id"]).toContain('lastname');
-
     expect(fixture.debugElement.query(By.css("#age")).attributes["id"]).toContain('age');
   });
+
+  it('add person successful', async(() => {
+
+    let targetComponent = fixture.componentInstance;
+    let fakePerson = new Person({
+      firstName: '',
+      lastName: '',
+      age: 12
+    });
+
+    fixture.detectChanges();
+    let submitResult = targetComponent.onSubmit(fakePerson);
+    submitResult.then(a => {
+      fixture.whenStable().then(() => {
+        expect(a).toBe(true);
+      })
+    });
+  }));
+
+  it('person2', async(() => {
+
+    let targetComponent = fixture.componentInstance;
+    let fakePerson = new Person({
+      firstName: '',
+      lastName: '',
+      age: 12
+    });
+
+    fixture.detectChanges();
+    let submitResult = targetComponent.onSubmit2(fakePerson);
+    submitResult.subscribe( r => {
+      fixture.whenStable().then(() => {
+        console.log(r);
+        expect(r).toBe(true);
+      })
+    });
+  }));
+
+
 
 });
