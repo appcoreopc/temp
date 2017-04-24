@@ -75,20 +75,6 @@ export class AddPersonComponent implements OnInit {
     }
   }
 
-  addPerson(): void {
-    let p = new Person({
-      firstName: '',
-      lastName: "",
-      age: 12
-    });
-
-   // this.personService.addPerson(p);
-  }
-
-  // onSubmit(person: Person) {
-  //    return this.personService.addPerson(person).then(statusResult => this.status = statusResult);
-  // }
-
   onSubmit(person: Person) {
      return this.personService.addPerson(person);
   }

@@ -38,7 +38,7 @@ describe('AddPersonComponent', () => {
     fixture = TestBed.createComponent(AddPersonComponent);
     personService = fixture.debugElement.injector.get(PersonService);
     personService = TestBed.get(PersonService);
-    //spy = spyOn(personService, 'addPerson').and.returnValue(Promise.resolve(true));
+
     spy = spyOn(personService, 'addPerson').and.returnValue(Observable.of(true));
 
 
@@ -70,14 +70,12 @@ describe('AddPersonComponent', () => {
 
     fixture.detectChanges();
     let submitResult = targetComponent.onSubmit(fakePerson);
-    submitResult.subscribe( r => {
+    submitResult.subscribe(r => {
       fixture.whenStable().then(() => {
         console.log(r);
         expect(r).toBe(true);
       })
     });
   }));
-
-
 
 });
