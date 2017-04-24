@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -19,7 +20,6 @@ describe('AddPersonComponent (templateUrl)', () => {
   let el: HTMLElement;
   let personService: PersonService;
   let spy: jasmine.Spy;
-
 
   // async beforeEach
   beforeEach(async(() => {
@@ -35,6 +35,9 @@ describe('AddPersonComponent (templateUrl)', () => {
   // synchronous beforeEach
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
+    personService = TestBed.get(PersonService);
+    spy = spyOn(personService, 'addPerson').and.returnValue(Observable.of(true));
+    //spy = spyOn(personService, 'addPerson').and.returnValue(Observable.of(true));
   });
 
   it('component loaded', () => {
@@ -50,9 +53,9 @@ describe('AddPersonComponent (templateUrl)', () => {
     expect(fixture.debugElement.query(By.css("#lastname")).attributes["id"]).toContain('lastname');
   });
 
-
   it('person search data loaded', async(() => {
 
+    personService.addPerson = jasmine.createSpy('').and.returnValue(true)
     let targetComponent = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -63,6 +66,4 @@ describe('AddPersonComponent (templateUrl)', () => {
       //expect(targetComponent.data[0].lastName).toBe('woo');
     })
   }));
-
-
 });

@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Person } from '../Person';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import { URLSearchParams } from './SearchParameterUrl';
-//import 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PersonService {
 
     private _http: Http;
     private _dataList: any;
-    private _dataSearch: any;
+    private _searchResult: any;
     private _localhost: string = "http://localhost:80";
     private _urlPersonAdd: string = this._localhost + "/api/person/addPerson";
     private _urlPersonList: string = this._localhost + "/api/person/list";
@@ -31,15 +30,13 @@ export class PersonService {
     };
 
     search(firstname: string, lastname: string) {
+
         var searchUrlParser = new URLSearchParams();
         var searchUrl =
             searchUrlParser.getSearchParameter(firstname, lastname);
 
-        return new Promise(resolve => {
-            this._http.get(this._urlPersonSearch + searchUrl).map(x => x.json()).subscribe(y => {
-                this._dataSearch = y;
-                resolve(this._dataSearch);
-            });
+        return this._http.get(this._urlPersonSearch + searchUrl).map(x => x.json()).subscribe(searchData => {
+            this._searchResult = searchData;
         });
     }
 }
