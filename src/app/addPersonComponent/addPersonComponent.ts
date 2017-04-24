@@ -82,15 +82,15 @@ export class AddPersonComponent implements OnInit {
       age: 12
     });
 
-    this.personService.addPerson(p);
+   // this.personService.addPerson(p);
   }
+
+  // onSubmit(person: Person) {
+  //    return this.personService.addPerson(person).then(statusResult => this.status = statusResult);
+  // }
 
   onSubmit(person: Person) {
-     return this.personService.addPerson(person).then(statusResult => this.status = statusResult);
-  }
-
-  onSubmit2(person: Person) {
-     return this.personService.addPerson2(person);
+     return this.personService.addPerson(person);
   }
 }
 
