@@ -30,7 +30,7 @@ export class PersonService {
         return this._http.get(this._urlPersonList).map(data => data.json());
     };
 
-    search(firstname: string, lastname: string, age: string) {
+    search(firstname: string, lastname: string) {
         var searchUrlParser = new URLSearchParams();
         var searchUrl =
             searchUrlParser.getSearchParameter(firstname, lastname);

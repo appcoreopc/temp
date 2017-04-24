@@ -10,13 +10,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/distinctUntilChanged'; 
+import 'rxjs/add/operator/distinctUntilChanged';
 
 describe('AddPersonComponent (templateUrl)', () => {
-
+  let comp: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let de: DebugElement;
   let el: HTMLElement;
+  let personService: PersonService;
+  let spy: jasmine.Spy;
+
 
   // async beforeEach
   beforeEach(async(() => {
@@ -35,21 +38,31 @@ describe('AddPersonComponent (templateUrl)', () => {
   });
 
   it('component loaded', () => {
-
     fixture.detectChanges();
-     
     let de = fixture.debugElement.query(By.css("h2"));
     el = de.nativeElement;
     expect(el.innerHTML).toContain("Search Person List");
   });
 
   it('rendered controls - firstname and lastname', () => {
-    
     fixture.detectChanges();
-
     expect(fixture.debugElement.query(By.css("#firstname")).attributes["id"]).toContain('firstname');
     expect(fixture.debugElement.query(By.css("#lastname")).attributes["id"]).toContain('lastname');
-
   });
+
+
+  it('person search data loaded', async(() => {
+
+    let targetComponent = fixture.componentInstance;
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+
+      //expect(targetComponent.data.length).toBe(2);
+      //expect(targetComponent.data[0].firstName).toBe('jeremy');
+      //expect(targetComponent.data[0].lastName).toBe('woo');
+    })
+  }));
+
 
 });

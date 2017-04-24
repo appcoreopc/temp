@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-
 describe('ListComponent', () => {
 
   let fixture: ComponentFixture<ListComponent>;
@@ -53,6 +52,7 @@ describe('ListComponent', () => {
 
   it('Person List data loaded', async(() => {
     let targetComponent = fixture.componentInstance;
+
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
