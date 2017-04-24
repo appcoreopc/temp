@@ -21,6 +21,8 @@ describe('AddPersonComponent', () => {
   let el: HTMLElement;
   let personService: PersonService;
   let spy: jasmine.Spy;
+  
+  let fakePerson: Person;
 
   // async beforeEach
   beforeEach(async(() => {
@@ -35,12 +37,18 @@ describe('AddPersonComponent', () => {
 
   // synchronous beforeEach
   beforeEach(() => {
+
+    fakePerson = new Person({
+      firstName: '',
+      lastName: '',
+      age: 12
+    });
+
+
+
     fixture = TestBed.createComponent(AddPersonComponent);
     personService = fixture.debugElement.injector.get(PersonService);
     personService = TestBed.get(PersonService);
-    spy = spyOn(personService, 'addPerson').and.returnValue(Promise.resolve(true));
-    spy = spyOn(personService, 'addPerson2').and.returnValue(Observable.of(true));
-
 
   });
 
@@ -61,41 +69,32 @@ describe('AddPersonComponent', () => {
 
   it('add person successful', async(() => {
 
-    let targetComponent = fixture.componentInstance;
-    let fakePerson = new Person({
-      firstName: '',
-      lastName: '',
-      age: 12
-    });
+    spy = spyOn(personService, 'addPerson').and.returnValue(Observable.of(true));
 
+    let targetComponent = fixture.componentInstance;
     fixture.detectChanges();
     let submitResult = targetComponent.onSubmit(fakePerson);
-    submitResult.then(a => {
+    submitResult.subscribe(returnStatus => {
       fixture.whenStable().then(() => {
-        expect(a).toBe(true);
+        console.log(returnStatus);
+        expect(returnStatus).toBe(true);
       })
     });
   }));
 
-  it('person2', async(() => {
+  it('add person fail', async(() => {
+
+    spy = spyOn(personService, 'addPerson').and.returnValue(Observable.of(false));
 
     let targetComponent = fixture.componentInstance;
-    let fakePerson = new Person({
-      firstName: '',
-      lastName: '',
-      age: 12
-    });
-
     fixture.detectChanges();
-    let submitResult = targetComponent.onSubmit2(fakePerson);
-    submitResult.subscribe( r => {
+    let submitResult = targetComponent.onSubmit(fakePerson);
+    submitResult.subscribe(results => {
       fixture.whenStable().then(() => {
-        console.log(r);
-        expect(r).toBe(true);
+        console.log(results);
+        expect(results).toBe(false);
       })
     });
   }));
-
-
 
 });

@@ -86,11 +86,7 @@ export class AddPersonComponent implements OnInit {
   }
 
   onSubmit(person: Person) {
-     return this.personService.addPerson(person).then(statusResult => this.status = statusResult);
-  }
-
-  onSubmit2(person: Person) {
-     return this.personService.addPerson2(person);
+     return this.personService.addPerson(person);
   }
 }
 
