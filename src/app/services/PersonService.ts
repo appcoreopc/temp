@@ -22,7 +22,13 @@ export class PersonService {
     constructor(private http: Http) {
     }
 
-    addPerson(person: Person): Observable<any> {
+    addPerson(person: Person): Promise<boolean> {
+        return new Promise(resolve => {
+            return resolve(false);
+        });
+    };
+
+    addPerson2(person: Person): Observable<any> {
         return this._http.post(this._urlPersonAdd, JSON.stringify(person)).map(data => data.json());
     };
 
